@@ -117,7 +117,9 @@ func (c *HttpQuery) doRequest(ctx context.Context, logger *zap.Logger, uri strin
 	if r != nil {
 		logger = logger.With(zap.Any("payloadData", r.LogInfo()))
 	}
+	ltsvlog.Logger.Info().String("msg", "HttpQuery.doRequest before sending requests").Stringer("u", u).Log()
 	resp, err := c.client.Do(req.WithContext(ctx))
+	ltsvlog.Logger.Info().String("msg", "HttpQuery.doRequest after sending requests").Stringer("u", u).Int("resp.StatusCode", resp.StatusCode).Fmt("err", "%v", err).Log()
 	if err != nil {
 		logger.Error("error fetching result",
 			zap.Error(err),
