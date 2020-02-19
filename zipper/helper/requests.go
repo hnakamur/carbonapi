@@ -14,6 +14,7 @@ import (
 	util "github.com/go-graphite/carbonapi/util/ctx"
 	"github.com/go-graphite/carbonapi/zipper/errors"
 	"github.com/go-graphite/carbonapi/zipper/types"
+	"github.com/hnakamur/ltsvlog/v3"
 	"go.uber.org/zap"
 )
 
@@ -72,6 +73,7 @@ func (c *HttpQuery) doRequest(ctx context.Context, logger *zap.Logger, uri strin
 	if err != nil {
 		return nil, err
 	}
+	ltsvlog.Logger.Info().String("msg", "HttpQuery.doRequest").Stringer("u", u).Log()
 
 	var reader io.Reader
 	var body []byte
