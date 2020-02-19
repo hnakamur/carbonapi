@@ -3,6 +3,9 @@ package limiter
 import (
 	"context"
 	"errors"
+
+	"github.com/hnakamur/errstack"
+	"github.com/hnakamur/ltsvlog/v3"
 )
 
 // ServerLimiter provides interface to limit amount of requests
@@ -44,6 +47,7 @@ func (sl RealLimiter) Enter(ctx context.Context, s string) error {
 	case sl.m[s] <- struct{}{}:
 		return nil
 	case <-ctx.Done():
+		ltsvlog.Logger.Err(errstack.New("timeout exceeded"))
 		return errors.New("timeout exceeded")
 	}
 }

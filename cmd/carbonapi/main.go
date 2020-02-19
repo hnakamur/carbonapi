@@ -7,12 +7,14 @@ import (
 	"net/http"
 	"net/http/pprof"
 	_ "net/http/pprof"
+	"os"
 	"sync"
 
 	"github.com/facebookgo/grace/gracehttp"
 	"github.com/go-graphite/carbonapi/cmd/carbonapi/config"
 	carbonapiHttp "github.com/go-graphite/carbonapi/cmd/carbonapi/http"
 	"github.com/gorilla/handlers"
+	"github.com/hnakamur/ltsvlog/v3"
 	"github.com/lomik/zapwriter"
 	"go.uber.org/zap"
 )
@@ -26,6 +28,13 @@ func main() {
 		log.Fatal("Failed to initialize logger with default configuration")
 	}
 	logger := zapwriter.Logger("main")
+
+	ltsvlogFile, err := os.OpenFile("/tmp/carbonapi-debug.log", os.O_CREATE|os.O_APPEND, 0644)
+	if err != nil {
+		log.Fatal("Failed to open ltsv log file")
+	}
+	defer ltsvlogFile.Close()
+	ltsvlog.Logger = ltsvlog.NewLTSVLogger(ltsvlogFile, false)
 
 	configPath := flag.String("config", "", "Path to the `config file`.")
 	envPrefix := flag.String("envprefix", "CARBONAPI", "Preifx for environment variables override")
