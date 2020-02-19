@@ -15,6 +15,7 @@ import (
 	"github.com/go-graphite/carbonapi/zipper/types"
 	protov3 "github.com/go-graphite/protocol/carbonapi_v3_pb"
 
+	"github.com/hnakamur/ltsvlog/v3"
 	"go.uber.org/zap"
 )
 
@@ -60,6 +61,7 @@ func New(logger *zap.Logger, config types.BackendV2) (types.BackendServer, *erro
 	if len(config.Servers) == 0 {
 		return nil, errors.Fatal("no servers specified")
 	}
+	ltsvlog.Logger.Info().String("msg", "zipper.protocols.v3.New").String("config.GroupName", config.GroupName).Int("config.ConcurrencyLimit", *config.ConcurrencyLimit).Log()
 	limiter := limiter.NewServerLimiter([]string{config.GroupName}, *config.ConcurrencyLimit)
 
 	return NewWithLimiter(logger, config, limiter)
