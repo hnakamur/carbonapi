@@ -7,7 +7,6 @@ require (
 	github.com/JaderDias/movingmedian v0.0.0-20170611140316-de8c410559fa
 	github.com/aclements/go-moremath v0.0.0-20190506201756-286cc0be6f75 // indirect
 	github.com/bradfitz/gomemcache v0.0.0-20190329173943-551aad21a668
-	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgryski/go-expirecache v0.0.0-20170314133854-743ef98b2adb
 	github.com/dgryski/go-onlinestats v0.0.0-20170612111826-1c7d19468768
 	github.com/dgryski/httputil v0.0.0-20160116060654-189c2918cd08
@@ -15,10 +14,14 @@ require (
 	github.com/evmar/gocairo v0.0.0-20160222165215-ddd30f837497
 	github.com/facebookgo/atomicfile v0.0.0-20151019160806-2de1f203e7d5 // indirect
 	github.com/facebookgo/clock v0.0.0-20150410010913-600d898af40a // indirect
+	github.com/facebookgo/ensure v0.0.0-20200202191622-63f1cf65ac4c // indirect
+	github.com/facebookgo/freeport v0.0.0-20150612182905-d4adf43b75b9 // indirect
 	github.com/facebookgo/grace v0.0.0-20180706040059-75cf19382434
 	github.com/facebookgo/httpdown v0.0.0-20180706035922-5979d39b15c2 // indirect
 	github.com/facebookgo/pidfile v0.0.0-20150612191647-f242e2999868
+	github.com/facebookgo/stack v0.0.0-20160209184415-751773369052 // indirect
 	github.com/facebookgo/stats v0.0.0-20151006221625-1b76add642e4 // indirect
+	github.com/facebookgo/subset v0.0.0-20200203212716-c811ad88dec4 // indirect
 	github.com/go-graphite/protocol v0.4.2
 	github.com/golang/protobuf v1.3.1
 	github.com/gorilla/handlers v1.4.0

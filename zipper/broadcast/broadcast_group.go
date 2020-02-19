@@ -11,6 +11,7 @@ import (
 	"github.com/go-graphite/carbonapi/zipper/errors"
 	"github.com/go-graphite/carbonapi/zipper/types"
 	protov3 "github.com/go-graphite/protocol/carbonapi_v3_pb"
+	"github.com/hnakamur/ltsvlog/v3"
 
 	"go.uber.org/zap"
 )
@@ -542,6 +543,7 @@ func doProbe(ctx context.Context, backend types.BackendServer, resCh chan<- tldR
 func (bg *BroadcastGroup) ProbeTLDs(ctx context.Context) ([]string, *errors.Errors) {
 	logger := bg.logger.With(zap.String("function", "prober"))
 
+	ltsvlog.Logger.Info().String("msg", "BroadcastGroup.ProbeTLDs").Stringer("bg.timeout.Find", bg.timeout.Find).Log()
 	ctx, cancel := context.WithTimeout(ctx, bg.timeout.Find)
 	defer cancel()
 
