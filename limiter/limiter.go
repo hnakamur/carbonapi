@@ -39,10 +39,12 @@ func (sl RealLimiter) Capacity() int {
 
 // Enter claims one of free slots or blocks until there is one.
 func (sl RealLimiter) Enter(ctx context.Context, s string) error {
+	ltsvlog.Logger.Info().String("msg", "RealLimiter start").String("s", s).Log()
 	if sl.m == nil {
 		return nil
 	}
 
+	ltsvlog.Logger.Info().String("msg", "RealLimiter").Int("cap(sl.m[s])", cap(sl.m[s])).Int("len(sl.m[s])", len(sl.m[s])).Log()
 	select {
 	case sl.m[s] <- struct{}{}:
 		return nil
