@@ -100,6 +100,7 @@ import (
 	"github.com/go-graphite/carbonapi/expr/functions/weightedAverage"
 	"github.com/go-graphite/carbonapi/expr/interfaces"
 	"github.com/go-graphite/carbonapi/expr/metadata"
+	"github.com/hnakamur/ltsvlog/v3"
 )
 
 type initFunc struct {
@@ -218,7 +219,9 @@ func New(configs map[string]string) {
 
 	for _, f := range funcs {
 		md := f.f(configs[strings.ToLower(f.name)])
+		ltsvlog.Logger.Info().String("msg", "before md for loop").Int("len(md)", len(md)).Log()
 		for _, m := range md {
+			ltsvlog.Logger.Info().String("msg", "before RegisterFunction").String("m.Name", m.Name).Log()
 			metadata.RegisterFunction(m.Name, m.F)
 		}
 	}

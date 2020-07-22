@@ -26,7 +26,6 @@ require (
 	github.com/go-graphite/protocol v0.4.3
 	github.com/golang/protobuf v1.4.0
 	github.com/gorilla/handlers v1.4.2
-	github.com/hnakamur/errstack v0.2.0
 	github.com/hnakamur/ltsvlog/v3 v3.0.3
 	github.com/lib/pq v1.4.0
 	github.com/lomik/og-rek v0.0.0-20170411191824-628eefeb8d80

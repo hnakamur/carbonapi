@@ -6,8 +6,6 @@ import (
 	"github.com/lomik/zapwriter"
 	"go.uber.org/zap"
 	"sync"
-	"github.com/hnakamur/ltsvlog/v3"
-	"github.com/hnakamur/errstack"
 )
 
 // RegisterRewriteFunction registers function for a rewrite phase in metadata and fills out all Description structs
@@ -39,7 +37,6 @@ func RegisterFunction(name string, function interfaces.Function) {
 	FunctionMD.Lock()
 	defer FunctionMD.Unlock()
 	function.SetEvaluator(FunctionMD.evaluator)
-	ltsvlog.Logger.Err(errstack.WithLV(errstack.New("intentional error for debug")).String("name", name))
 	_, ok := FunctionMD.Functions[name]
 	if ok {
 		logger := zapwriter.Logger("registerFunction")

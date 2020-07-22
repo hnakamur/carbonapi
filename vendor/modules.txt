@@ -92,7 +92,6 @@ github.com/hashicorp/hcl/json/parser
 github.com/hashicorp/hcl/json/scanner
 github.com/hashicorp/hcl/json/token
 # github.com/hnakamur/errstack v0.2.0
-## explicit
 github.com/hnakamur/errstack
 # github.com/hnakamur/ltsvlog/v3 v3.0.3
 ## explicit

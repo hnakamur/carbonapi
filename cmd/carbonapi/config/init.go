@@ -24,6 +24,7 @@ import (
 	"github.com/lomik/zapwriter"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
+	"github.com/hnakamur/ltsvlog/v3"
 )
 
 var graphTemplates map[string]png.PictureParams
@@ -147,7 +148,9 @@ func SetUpConfig(logger *zap.Logger, BuildVersion string) {
 		Config.FunctionsConfigs = make(map[string]string)
 	}
 
+	ltsvlog.Logger.Info().String("msg", "before rewrite.New").Int("len(Config.FunctionsConfigs)", len(Config.FunctionsConfigs)).Log()
 	rewrite.New(Config.FunctionsConfigs)
+	ltsvlog.Logger.Info().String("msg", "before functions.New").Int("len(Config.FunctionsConfigs)", len(Config.FunctionsConfigs)).Log()
 	functions.New(Config.FunctionsConfigs)
 
 	expvar.NewString("GoVersion").Set(runtime.Version())
